@@ -12,15 +12,17 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker=\Faker\Factory::create();
+        // Let's truncate our existing records to start from scratch.
+        Article::truncate();
 
-        //create a few articles in our database;
+        $faker = \Faker\Factory::create();
 
-        for($i=0;$i<50;$i++){
+        // And now, let's create a few articles in our database:
+        for ($i = 0; $i < 50; $i++) {
             Article::create([
-                'title'=>$faker->sentence,
-                'body'=>$faker->paragraph,
-
+                'title' => $faker->sentence,
+                'body' => $faker->paragraph,
+                'user_id' => random_int(1, 14)
             ]);
         }
     }
